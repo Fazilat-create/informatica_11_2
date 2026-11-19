@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Практикум: задание 3 ЕГЭ (упрощённо) · 11 класс</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=PT+Serif:wght@700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Nunito","Segoe UI",Arial,sans-serif;background:#FBF7F2;color:#2B2440;font-size:17px;line-height:1.5}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+h1,h2,h3{font-family:"PT Serif",Georgia,serif;line-height:1.2}
+h1{font-size:clamp(26px,5vw,38px)}
+h2{font-size:clamp(21px,3.6vw,27px)}
+.wrap{max-width:960px;margin:0 auto;padding:0 16px}
+header{position:sticky;top:0;z-index:30;background:#FBF7F2;border-bottom:1px solid #ECE4DA}
+header .wrap{display:flex;align-items:center;gap:10px;min-height:56px}
+.tl{font-weight:800;color:#e8741a}
+.sub{font-size:14px;color:#5D5672}
+.vchip{margin-left:auto;font-weight:800;font-size:14px;background:#1d2346;color:#fff;border-radius:999px;padding:4px 12px;display:none}
+.vchip.on{display:inline-block}
+@media (max-width:480px){.sub{display:none}.tl{font-size:15px}}
+main{padding:22px 0 60px}
+.eyebrow{display:inline-flex;gap:8px;align-items:center;font-size:14px;font-weight:800;color:#C9482A;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px}
+.eyebrow span{color:#5D5672;background:#fff;border:1.5px solid #ECE4DA;border-radius:999px;padding:2px 10px;text-transform:none;letter-spacing:0}
+.lead{font-size:18px;color:#5D5672;margin-top:8px}
+.card{background:#fff;border-radius:20px;box-shadow:0 6px 24px rgba(60,40,120,.08);padding:20px;margin-top:18px}
+.card.soft{background:#fce3c6;box-shadow:none}
+.card.amber{background:#FFF4D1;box-shadow:none}
+.card.blue{background:#e6f0fa;box-shadow:none}
+.bn{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:#f58a27;color:#fff;font-weight:800;font-size:15px;margin-right:10px;vertical-align:2px}
+label.f{display:block;margin-top:12px}
+label.f>span,.lbl{display:block;font-weight:800;margin-bottom:5px}
+input[type=text]{width:100%;border:2px solid #ECE4DA;background:#fff;border-radius:12px;padding:10px 12px;font-size:16px;outline:none}
+input[type=text]:focus{border-color:#f58a27;box-shadow:0 0 0 4px #fce3c6}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:600px){.g2{grid-template-columns:1fr}}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{border:2px solid #ECE4DA;background:#fff;border-radius:14px;padding:10px 18px;font-weight:800;min-height:46px}
+.pill.sel{background:#f58a27;border-color:#f58a27;color:#fff}
+.small{font-size:14px;color:#5D5672}
+.algo{list-style:none;counter-reset:a;display:grid;gap:8px;margin-top:10px}
+.algo li{counter-increment:a;position:relative;padding:8px 12px 8px 46px;background:#fff;border-radius:12px}
+.algo li::before{content:counter(a);position:absolute;left:10px;top:7px;width:26px;height:26px;border-radius:50%;background:#f58a27;color:#fff;font-weight:800;display:grid;place-items:center;font-size:14px}
+
+/* база в стиле Excel */
+.xl{margin-top:12px;font-size:14px}
+.xl .tabs{display:flex;gap:4px;flex-wrap:wrap}
+.xl .tabs button{border:1.5px solid #c9cfd6;border-bottom:none;background:#eef1f4;border-radius:10px 10px 0 0;padding:6px 14px;font-weight:800;color:#4a5560;font-size:14px}
+.xl .tabs button.on{background:#fff;color:#1d6f42;border-color:#1d6f42;box-shadow:inset 0 3px 0 #1d6f42}
+.xl .tw{overflow:auto;border:1.5px solid #c9cfd6;background:#fff;max-height:420px}
+.xl table{border-collapse:collapse;width:100%}
+.xl th{background:#f3f5f7;color:#2b3640;text-align:left;padding:5px 8px;font-weight:800;border:1px solid #d9dee3;position:sticky;top:0;z-index:2;white-space:nowrap}
+.xl tr.flt th{top:31px;background:#fbfcfd;padding:3px 4px}
+.xl .fbtn{width:100%;min-width:70px;border:1.5px solid #c9cfd6;border-radius:7px;background:#fff;padding:2px 6px;font-size:13px;font-weight:700;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:150px}
+.xl .fbtn.act{border-color:#1d6f42;background:#e3f2e8;color:#1d6f42}
+.xl td{padding:3px 8px;border:1px solid #e3e7eb;white-space:nowrap}
+.xl td.n{text-align:right}
+.xl tbody tr:nth-child(even) td{background:#fafbfc}
+.xl tr.flash td{animation:fl 2.4s}
+@keyframes fl{0%,60%{background:#d4ecdc}100%{background:transparent}}
+.xl .fp{display:none;border:2px solid #1d6f42;border-radius:12px;background:#fff;padding:10px 12px;margin:8px 0;box-shadow:0 6px 18px rgba(0,0,0,.08)}
+.xl .fp.on{display:block}
+.xl .fp .ttl{font-weight:800;margin-bottom:6px}
+.xl .fp .opts{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:4px 12px;max-height:200px;overflow:auto}
+.xl .fp label{display:flex;gap:8px;align-items:center;font-weight:700;cursor:pointer;padding:2px 0}
+.xl .fp input{width:18px;height:18px;accent-color:#1d6f42}
+.xl .fp .row{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+.xl .fp button{border:none;border-radius:9px;padding:6px 14px;font-weight:800}
+.xl .fp .ok{background:#1d6f42;color:#fff;margin-left:auto}
+.xl .fp .all{background:#eef1f4}
+.xl .status{display:flex;gap:18px;align-items:center;flex-wrap:wrap;background:#1d6f42;color:#fff;padding:7px 12px;border-radius:0 0 10px 10px;font-weight:700}
+.xl .status b{font-size:18px}
+.xl .status .clr{margin-left:auto;border:none;background:#fff;color:#1d6f42;border-radius:8px;padding:3px 10px;font-weight:800}
+.xl .status .clr:disabled{opacity:.5;cursor:default}
+
+/* разбор */
+.ex{display:grid;gap:10px;margin-top:12px}
+.exs{display:none;border-left:4px solid #f58a27;background:#fffaf3;border-radius:0 12px 12px 0;padding:10px 14px}
+.exs.on{display:block;animation:in .3s}
+@keyframes in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.exs b.k{background:#e3f2e8;color:#1d6f42;border-radius:6px;padding:0 6px}
+.btn-o{border:none;border-radius:12px;padding:10px 18px;font-weight:800;background:#f58a27;color:#fff}
+.btn-o.ghost{background:#fff;color:#8a6a4a;border:2px solid #f1d6b6}
+
+/* задания */
+.qi{border:2px solid #ECE4DA;border-radius:16px;padding:14px;margin-top:12px}
+.qi.ok{border-color:#7cc36a;background:#F4FCF9}
+.qi.no{border-color:#e59a88;background:#FFF8F5}
+.lvl{display:inline-block;font-size:13px;font-weight:800;border-radius:999px;padding:2px 10px;background:#e6f0fa;color:#2f5f9e;margin-bottom:6px}
+.lvl.ege{background:#1d2346;color:#fff}
+.qq{font-weight:800;line-height:1.35}
+.ar{display:flex;gap:8px;margin-top:10px}
+.ar input{flex:1;min-width:0}
+.go{border:none;border-radius:12px;padding:8px 16px;font-weight:800;background:#f58a27;color:#fff;white-space:nowrap}
+.fb{margin-top:8px;font-weight:800;min-height:1.4em}
+.fb.ok{color:#1F9E85}.fb.no{color:#C9482A}
+.lnk{border:none;background:none;color:#2f5f9e;font-weight:800;text-decoration:underline;padding:2px 0}
+.hint{margin-top:6px;background:#fff3c4;border-radius:12px;padding:8px 12px;display:none;line-height:1.35}
+.hint.on{display:block}
+.novar{color:#C9482A;font-weight:800;margin-top:10px}
+
+/* отправка */
+.status2{font-weight:700;font-size:15px}
+.status2.okk{color:#1F9E85}.status2.warn{color:#C9482A}
+.send{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.sbtn{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:14px;padding:13px 20px;font-weight:800;font-size:16px;min-height:50px;text-decoration:none;color:#fff}
+.sbtn.tg{background:#229ED9}.sbtn.wa{background:#25A244}.sbtn.cp{background:#fff;color:#2B2440;border:2px solid #ECE4DA}
+.sbtn.off{opacity:.45;pointer-events:none}
+details.pv{margin-top:12px;background:#fff;border-radius:14px;padding:0 14px}
+details.pv summary{cursor:pointer;font-weight:800;padding:12px 0}
+pre{white-space:pre-wrap;font-family:inherit;font-size:14px;padding-bottom:12px}
+textarea{width:100%;border:2px solid #ECE4DA;border-radius:12px;padding:10px;font-size:14px}
+.reset{background:none;border:0;color:#5D5672;text-decoration:underline;font-size:14px;margin-top:22px}
+.confirm{display:none;gap:10px;align-items:center;flex-wrap:wrap;margin-top:8px}
+.confirm.show{display:flex}
+.confirm button{border:0;border-radius:10px;padding:8px 14px;font-weight:800}
+.toast{position:fixed;left:50%;bottom:30px;transform:translateX(-50%) translateY(20px);background:#1d2346;color:#fff;padding:12px 18px;border-radius:14px;font-weight:700;opacity:0;pointer-events:none;transition:.3s;z-index:50;max-width:calc(100% - 32px);text-align:center}
+.toast.show{opacity:1;transform:translateX(-50%)}
+</style>
+</head>
+<body>
+<header><div class="wrap"><span class="tl">🗄️ Информатика · 11 класс</span><span class="sub">Практикум ЕГЭ</span><span class="vchip" id="vchip"></span></div></header>
+<main class="wrap">
+  <div class="eyebrow">Практическая работа <span>около 20 минут</span></div>
+  <h1>Задание 3 ЕГЭ — упрощённый вариант</h1>
+  <p class="lead">Перед тобой база сети магазинов — такая же, как на экзамене, только поменьше: 125 строк вместо тысяч. Глазами тут уже не найдёшь — нужны <b>фильтры</b>.</p>
+
+  <div class="card">
+    <div class="g2">
+      <label class="f" style="margin-top:0"><span>Фамилия и имя</span><input type="text" data-k="name" placeholder="Иванов Иван" autocomplete="name"></label>
+      <label class="f" style="margin-top:0"><span>Класс</span><input type="text" data-k="cls" placeholder="11 А"></label>
+    </div>
+    <div style="margin-top:14px"><span class="lbl">Твой вариант <span class="small" style="font-weight:700">(назовёт учитель)</span></span>
+      <div class="pills" id="vars"></div></div>
+  </div>
+
+  <div class="card amber">
+    <h2>Как решать</h2>
+    <ol class="algo">
+      <li>В таблице <b>«Товар»</b> найди <b>артикул</b> нужного товара.</li>
+      <li>В таблице <b>«Магазин»</b> найди <b>ID магазинов</b> нужного района.</li>
+      <li>В <b>«Движении товаров»</b> поставь фильтры: артикул, ID магазина, тип операции.</li>
+      <li>Внизу посмотри <b>сумму</b> упаковок. Если спрашивают «на сколько увеличилось» — это <b>поступило − продано</b>.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2><span class="bn">📊</span>База данных</h2>
+    <p class="small" style="margin-top:6px">Нажми на кнопку под заголовком столбца — откроется фильтр. Можно отметить <b>несколько</b> значений, как в Excel.</p>
+    <div class="xl" id="xl"></div>
+  </div>
+
+  <div class="card">
+    <h2><span class="bn">👀</span>Разбор примера</h2>
+    <p class="qq" style="margin-top:8px">Сколько упаковок батона нарезного продано в магазинах Октябрьского района?</p>
+    <div class="ex">
+      <div class="exs" data-s="1">1. Открываем «Товар»: <b>Батон нарезной</b> — артикул <b class="k">8</b>.</div>
+      <div class="exs" data-s="2">2. Открываем «Магазин»: Октябрьский район — магазины <b class="k">М3</b> и <b class="k">М4</b>.</div>
+      <div class="exs" data-s="3">3. В «Движении товаров» ставим фильтры: Артикул = <b class="k">8</b>, ID магазина = <b class="k">М3, М4</b>, Тип операции = <b class="k">Продажа</b>.</div>
+      <div class="exs" data-s="4">4. Смотрим сумму внизу: <b class="k" id="exAns"></b> упаковок. Это и есть ответ!</div>
+    </div>
+    <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap"><button class="btn-o" id="exNext" type="button">Показать шаг 1</button><button class="btn-o ghost" id="exReset" type="button">Сначала</button></div>
+    <p class="small" style="margin-top:8px">Шаги сами переключают таблицу и ставят фильтры — смотри на базу выше.</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="bn">✍️</span>Задания</h2>
+    <p class="novar" id="novar">Сначала выбери вариант — вверху страницы.</p>
+    <div id="tasks"></div>
+  </div>
+
+  <div class="card soft">
+    <h2><span class="bn">📨</span>Отправь ответы учителю</h2>
+    <p class="status2" id="status" style="margin-top:10px"></p>
+    <div class="send">
+      <a class="sbtn tg" id="sTg" href="#" target="_blank" rel="noopener">✈️ Telegram</a>
+      <a class="sbtn wa" id="sWa" href="#" target="_blank" rel="noopener">💬 WhatsApp</a>
+      <button class="sbtn cp" id="sCp" type="button">📋 Скопировать</button>
+    </div>
+    <p class="small" style="margin-top:10px" id="sendHint"></p>
+    <details class="pv"><summary>Посмотреть сообщение</summary><pre id="preview"></pre></details>
+    <div id="manualWrap" style="display:none;margin-top:10px"><span class="lbl">Не скопировалось? Выдели текст и скопируй вручную</span><textarea id="manual" readonly rows="8"></textarea></div>
+  </div>
+  <button class="reset" id="reset" type="button">Начать заново (всё стереть)</button>
+  <div class="confirm" id="confirm"><span class="small">Точно стереть все ответы?</span><button id="yesreset" type="button" style="background:#C9482A;color:#fff">Да, стереть</button><button id="noreset" type="button" style="background:#fff">Нет</button></div>
+</main>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* ===== Настройки для учителя =====
+   telegram — ваш username без @ (например "ivanova_inf"): кнопка откроет диалог с вами.
+   whatsapp — ваш номер только цифрами (например "79131234567").
+   Если поле пустое — ученик сам выберет ваш чат в мессенджере. */
+const CONFIG={telegram:"",whatsapp:"",storageKey:"ege3-practice-v1"};
+
+const DATA={"shops": [["М1", "Центральный", "ул. Мира, 12"], ["М2", "Центральный", "пр. Победы, 40"], ["М3", "Октябрьский", "ул. Лесная, 3"], ["М4", "Октябрьский", "ул. Садовая, 8"], ["М5", "Советский", "ул. Ленина, 25"], ["М6", "Советский", "ул. Чкалова, 7"]], "goods": [[1, "Молочный", "Молоко 2,5%", "литр", 1, "Молочный край"], [2, "Молочный", "Кефир 1%", "литр", 0.9, "Молочный край"], [3, "Молочный", "Сметана 20%", "грамм", 300, "Бурёнка"], [4, "Молочный", "Творог 5%", "грамм", 200, "Бурёнка"], [5, "Бакалея", "Гречка ядрица", "грамм", 900, "Алтайская нива"], [6, "Бакалея", "Рис круглозёрный", "грамм", 900, "Алтайская нива"], [7, "Хлебный", "Хлеб белый", "штука", 1, "Хлебозавод №1"], [8, "Хлебный", "Батон нарезной", "штука", 1, "Хлебозавод №1"]], "moves": [[1, "01.06", "М6", 8, "Поступление", 45, 46], [2, "01.06", "М1", 5, "Поступление", 30, 96], [3, "01.06", "М6", 2, "Поступление", 50, 84], [4, "01.06", "М6", 3, "Поступление", 40, 112], [5, "01.06", "М5", 7, "Поступление", 50, 42], [6, "01.06", "М5", 8, "Поступление", 50, 46], [7, "01.06", "М2", 1, "Поступление", 25, 89], [8, "01.06", "М1", 1, "Поступление", 60, 89], [9, "01.06", "М1", 4, "Поступление", 60, 135], [10, "01.06", "М6", 4, "Поступление", 30, 135], [11, "01.06", "М6", 7, "Поступление", 35, 42], [12, "01.06", "М4", 2, "Поступление", 60, 84], [13, "01.06", "М5", 2, "Поступление", 35, 84], [14, "01.06", "М4", 1, "Поступление", 30, 89], [15, "01.06", "М6", 1, "Поступление", 40, 89], [16, "01.06", "М5", 5, "Поступление", 40, 96], [17, "01.06", "М4", 4, "Поступление", 50, 135], [18, "01.06", "М5", 4, "Поступление", 30, 135], [19, "01.06", "М4", 5, "Поступление", 20, 96], [20, "01.06", "М3", 4, "Поступление", 50, 135], [21, "01.06", "М6", 5, "Поступление", 25, 96], [22, "01.06", "М5", 3, "Поступление", 45, 112], [23, "01.06", "М4", 8, "Поступление", 45, 46], [24, "01.06", "М4", 7, "Поступление", 35, 42], [25, "01.06", "М3", 6, "Поступление", 45, 88], [26, "01.06", "М2", 8, "Поступление", 50, 46], [27, "01.06", "М2", 7, "Поступление", 40, 42], [28, "01.06", "М1", 7, "Поступление", 20, 42], [29, "01.06", "М3", 1, "Поступление", 50, 89], [30, "01.06", "М4", 3, "Поступление", 50, 112], [31, "01.06", "М2", 4, "Поступление", 60, 135], [32, "01.06", "М1", 3, "Поступление", 35, 112], [33, "01.06", "М3", 7, "Поступление", 50, 42], [34, "01.06", "М5", 1, "Поступление", 25, 89], [35, "01.06", "М1", 8, "Поступление", 30, 46], [36, "01.06", "М3", 3, "Поступление", 60, 112], [37, "01.06", "М3", 5, "Поступление", 35, 96], [38, "01.06", "М2", 3, "Поступление", 35, 112], [39, "01.06", "М6", 6, "Поступление", 20, 88], [40, "01.06", "М2", 6, "Поступление", 40, 88], [41, "01.06", "М2", 5, "Поступление", 60, 96], [42, "01.06", "М3", 2, "Поступление", 20, 84], [43, "01.06", "М4", 6, "Поступление", 25, 88], [44, "01.06", "М1", 2, "Поступление", 60, 84], [45, "01.06", "М2", 2, "Поступление", 20, 84], [46, "01.06", "М3", 8, "Поступление", 20, 46], [47, "01.06", "М1", 6, "Поступление", 25, 88], [48, "01.06", "М5", 6, "Поступление", 35, 88], [49, "02.06", "М1", 6, "Продажа", 11, 88], [50, "02.06", "М3", 5, "Продажа", 15, 96], [51, "02.06", "М1", 4, "Продажа", 23, 135], [52, "02.06", "М6", 4, "Продажа", 6, 135], [53, "02.06", "М2", 8, "Продажа", 6, 46], [54, "02.06", "М6", 2, "Продажа", 11, 84], [55, "02.06", "М5", 2, "Продажа", 3, 84], [56, "02.06", "М4", 2, "Продажа", 19, 84], [57, "02.06", "М3", 8, "Продажа", 3, 46], [58, "02.06", "М5", 3, "Продажа", 22, 112], [59, "02.06", "М4", 7, "Продажа", 10, 42], [60, "02.06", "М1", 8, "Продажа", 12, 46], [61, "02.06", "М1", 1, "Продажа", 30, 89], [62, "02.06", "М2", 7, "Продажа", 3, 42], [63, "02.06", "М4", 6, "Продажа", 3, 88], [64, "02.06", "М2", 5, "Продажа", 23, 96], [65, "02.06", "М4", 3, "Продажа", 23, 112], [66, "02.06", "М5", 6, "Продажа", 14, 88], [67, "02.06", "М6", 8, "Продажа", 19, 46], [68, "02.06", "М6", 7, "Продажа", 3, 42], [69, "02.06", "М3", 6, "Продажа", 5, 88], [70, "02.06", "М1", 7, "Продажа", 9, 42], [71, "02.06", "М3", 7, "Продажа", 6, 42], [72, "02.06", "М2", 1, "Продажа", 3, 89], [73, "02.06", "М2", 6, "Продажа", 13, 88], [74, "02.06", "М3", 3, "Продажа", 15, 112], [75, "02.06", "М1", 3, "Продажа", 5, 112], [76, "02.06", "М5", 4, "Продажа", 9, 135], [77, "02.06", "М6", 5, "Продажа", 7, 96], [78, "02.06", "М4", 4, "Продажа", 9, 135], [79, "02.06", "М4", 1, "Продажа", 13, 89], [80, "02.06", "М5", 8, "Продажа", 4, 46], [81, "02.06", "М3", 2, "Продажа", 6, 84], [82, "02.06", "М2", 2, "Продажа", 10, 84], [83, "02.06", "М6", 1, "Продажа", 10, 89], [84, "02.06", "М4", 5, "Продажа", 6, 96], [85, "02.06", "М6", 3, "Продажа", 19, 112], [86, "02.06", "М4", 8, "Продажа", 12, 46], [87, "02.06", "М3", 4, "Продажа", 16, 135], [88, "02.06", "М5", 5, "Продажа", 10, 96], [89, "02.06", "М5", 7, "Продажа", 18, 42], [90, "02.06", "М2", 4, "Продажа", 3, 135], [91, "02.06", "М1", 5, "Продажа", 4, 96], [92, "02.06", "М2", 3, "Продажа", 11, 112], [93, "02.06", "М5", 1, "Продажа", 6, 89], [94, "02.06", "М6", 6, "Продажа", 4, 88], [95, "02.06", "М1", 2, "Продажа", 17, 84], [96, "02.06", "М3", 1, "Продажа", 5, 89], [97, "03.06", "М3", 8, "Продажа", 6, 46], [98, "03.06", "М5", 6, "Продажа", 6, 88], [99, "03.06", "М3", 4, "Продажа", 13, 135], [100, "03.06", "М4", 7, "Продажа", 12, 42], [101, "03.06", "М6", 7, "Продажа", 7, 42], [102, "03.06", "М4", 4, "Продажа", 12, 135], [103, "03.06", "М5", 3, "Продажа", 10, 112], [104, "03.06", "М3", 6, "Продажа", 3, 88], [105, "03.06", "М6", 3, "Продажа", 4, 112], [106, "03.06", "М2", 3, "Продажа", 7, 112], [107, "03.06", "М3", 2, "Продажа", 3, 84], [108, "03.06", "М6", 2, "Продажа", 18, 84], [109, "03.06", "М5", 4, "Продажа", 5, 135], [110, "03.06", "М5", 8, "Продажа", 4, 46], [111, "03.06", "М2", 7, "Продажа", 6, 42], [112, "03.06", "М3", 7, "Продажа", 6, 42], [113, "03.06", "М6", 4, "Продажа", 12, 135], [114, "03.06", "М6", 5, "Продажа", 4, 96], [115, "03.06", "М1", 2, "Продажа", 21, 84], [116, "03.06", "М6", 6, "Продажа", 6, 88], [117, "03.06", "М1", 5, "Продажа", 5, 96], [118, "03.06", "М2", 2, "Продажа", 5, 84], [119, "03.06", "М2", 1, "Продажа", 6, 89], [120, "03.06", "М2", 5, "Продажа", 5, 96], [121, "03.06", "М4", 8, "Продажа", 4, 46], [122, "03.06", "М4", 3, "Продажа", 9, 112], [123, "03.06", "М4", 2, "Продажа", 7, 84], [124, "03.06", "М4", 5, "Продажа", 7, 96], [125, "03.06", "М1", 8, "Продажа", 7, 46]]};
+const $=(s,el=document)=>el.querySelector(s),$$=(s,el=document)=>[...el.querySelectorAll(s)];
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const norm=s=>String(s??"").replace(/\s/g,"").replace(",",".");
+const has=v=>String(v??"").trim()!=="";
+const V=(v,d="—")=>has(v)?String(v).trim():d;
+
+const SHOPS=DATA.shops.map(([id,d,a])=>({id,d,a}));
+const GOODS=DATA.goods.map(([art,dep,nm,u,q,sup])=>({art,dep,nm,u,q,sup}));
+const MOVES=DATA.moves.map(([id,dt,s,a,op,q,p])=>({id,dt,s,a,op,q,p}));
+
+/* ===== Таблица в стиле Excel ===== */
+function XL(root,tables){
+  const st={t:0,f:tables.map(()=>({})),open:null};
+  const uniq=(T,k)=>{const u=[...new Set(T.rows.map(r=>r[k]))];return u.sort((a,b)=>typeof a==="number"&&typeof b==="number"?a-b:String(a).localeCompare(String(b),"ru",{numeric:true}));};
+  function render(){
+    const T=tables[st.t],F=st.f[st.t];
+    const rows=T.rows.filter(r=>T.cols.every(c=>!F[c.k]||F[c.k].includes(r[c.k])));
+    let h='<div class="tabs">'+tables.map((t,i)=>`<button type="button" data-tab="${i}" class="${i===st.t?"on":""}">${t.name}</button>`).join("")+"</div>";
+    if(st.open){const c=T.cols.find(x=>x.k===st.open),sel=F[st.open];
+      h+=`<div class="fp on"><div class="ttl">Фильтр: ${c.label}</div><div class="opts">${uniq(T,st.open).map(v=>`<label><input type="checkbox" value="${esc(v)}" ${!sel||sel.includes(v)?"checked":""}>${esc(v)}</label>`).join("")}</div>
+        <div class="row"><button type="button" class="all" data-a="1">Выбрать все</button><button type="button" class="all" data-a="0">Снять все</button><button type="button" class="ok">Готово</button></div></div>`;}
+    h+='<div class="tw"><table><thead><tr>'+T.cols.map(c=>`<th>${c.label}</th>`).join("")+'</tr><tr class="flt">'+T.cols.map(c=>{
+      if(c.nofilter)return "<th></th>";const s=F[c.k];const lab=!s?"все":s.length<=2?s.join(", "):s.length+" знач.";
+      return `<th><button type="button" class="fbtn ${s?"act":""}" data-f="${c.k}">${esc(lab)} ▾</button></th>`;}).join("")+"</tr></thead><tbody>"+
+      rows.map(r=>`<tr class="${st.flash===r?"flash":""}">`+T.cols.map(c=>`<td class="${typeof r[c.k]==="number"?"n":""}">${esc(r[c.k])}</td>`).join("")+"</tr>").join("")+
+      (rows.length?"":`<tr><td colspan="${T.cols.length}" style="text-align:center;color:#8a6a4a;padding:12px">нет подходящих строк</td></tr>`)+"</tbody></table></div>";
+    const any=Object.keys(F).length>0,sc=T.sum&&T.cols.find(c=>c.k===T.sum);
+    h+=`<div class="status"><span>Строк: <b>${rows.length}</b> из ${T.rows.length}</span>${sc?`<span>Сумма «${sc.label}»: <b>${rows.reduce((s,r)=>s+r[T.sum],0)}</b></span>`:""}<button type="button" class="clr" ${any?"":"disabled"}>Сбросить фильтры</button></div>`;
+    root.innerHTML=h;st.flash=null;
+    $$(".tabs button",root).forEach(b=>b.onclick=()=>{st.t=+b.dataset.tab;st.open=null;render();});
+    $$(".fbtn",root).forEach(b=>b.onclick=()=>{st.open=st.open===b.dataset.f?null:b.dataset.f;render();});
+    $(".clr",root).onclick=()=>{st.f[st.t]={};st.open=null;render();};
+    const fp=$(".fp",root);
+    if(fp){const k=st.open,all=uniq(T,k);
+      const apply=()=>{const vals=$$("input",fp).filter(x=>x.checked).map(x=>all.find(v=>String(v)===x.value));
+        if(vals.length===all.length)delete F[k];else F[k]=vals;};
+      $$("input",fp).forEach(x=>x.onchange=()=>{apply();const keep=st.open;render();st.open=keep;});
+      $$(".all",fp).forEach(b=>b.onclick=()=>{$$("input",fp).forEach(x=>x.checked=b.dataset.a==="1");apply();render();});
+      $(".ok",fp).onclick=()=>{st.open=null;render();};
+    }
+  }
+  render();
+  return {set(t,f){st.t=t;st.f[t]=f||{};st.open=null;render();},reset(){st.f=tables.map(()=>({}));st.open=null;render();},show(t){st.t=t;st.open=null;render();},el:root};
+}
+const xl=XL($("#xl"),[
+  {name:"Движение товаров",cols:[{k:"id",label:"ID операции",nofilter:1},{k:"dt",label:"Дата"},{k:"s",label:"ID магазина"},{k:"a",label:"Артикул"},{k:"op",label:"Тип операции"},{k:"q",label:"Количество упаковок, шт.",nofilter:1},{k:"p",label:"Цена, руб./шт.",nofilter:1}],rows:MOVES,sum:"q"},
+  {name:"Товар",cols:[{k:"art",label:"Артикул"},{k:"dep",label:"Отдел"},{k:"nm",label:"Наименование товара"},{k:"u",label:"Ед. изм."},{k:"q",label:"Количество в упаковке",nofilter:1},{k:"sup",label:"Поставщик"}],rows:GOODS},
+  {name:"Магазин",cols:[{k:"id",label:"ID магазина"},{k:"d",label:"Район"},{k:"a",label:"Адрес"}],rows:SHOPS}
+]);
+
+/* ===== Расчёт ответов прямо по базе ===== */
+const sum=f=>MOVES.filter(f).reduce((s,m)=>s+m.q,0);
+const inDist=d=>SHOPS.filter(s=>s.d===d).map(s=>s.id);
+const gname=a=>GOODS.find(g=>g.art===a).nm;
+const gen=d=>d.replace(/(ый|ий)$/,"ого");
+
+/* разбор */
+const EX={a:8,d:"Октябрьский"};
+$("#exAns").textContent=sum(m=>m.a===EX.a&&inDist(EX.d).includes(m.s)&&m.op==="Продажа");
+let exStep=0;
+const exActions=[()=>xl.set(1,{nm:["Батон нарезной"]}),()=>xl.set(2,{d:["Октябрьский"]}),()=>xl.set(0,{a:[8],s:["М3","М4"],op:["Продажа"]}),()=>{}];
+$("#exNext").onclick=()=>{if(exStep>=4)return;exStep++;$(`.exs[data-s="${exStep}"]`).classList.add("on");exActions[exStep-1]();
+  $("#exNext").textContent=exStep<4?`Показать шаг ${exStep+1}`:"Готово ✓";$("#xl").scrollIntoView({behavior:"smooth",block:"start"});};
+$("#exReset").onclick=()=>{exStep=0;$$(".exs").forEach(e=>e.classList.remove("on"));$("#exNext").textContent="Показать шаг 1";xl.reset();};
+
+/* варианты */
+const VARS=[
+  {a1:3,s1:"М4",g2:2,g3:5,d3:"Центральный",g4:1,d4:"Советский"},
+  {a1:6,s1:"М1",g2:4,g3:7,d3:"Советский",g4:2,d4:"Октябрьский"},
+  {a1:1,s1:"М5",g2:3,g3:6,d3:"Октябрьский",g4:4,d4:"Центральный"},
+  {a1:7,s1:"М2",g2:5,g3:1,d3:"Советский",g4:3,d4:"Октябрьский"}
+];
+function tasksFor(v){
+  return [
+    {lvl:"одна таблица",q:`Сколько упаковок товара с артикулом ${v.a1} поступило в магазин ${v.s1}?`,
+     a:sum(m=>m.a===v.a1&&m.s===v.s1&&m.op==="Поступление"),
+     hint:`Таблица «Движение товаров»: фильтры Артикул = ${v.a1}, ID магазина = ${v.s1}, Тип операции = Поступление.`},
+    {lvl:"две таблицы",q:`Сколько упаковок товара «${gname(v.g2)}» продано во всех магазинах за весь период?`,
+     a:sum(m=>m.a===v.g2&&m.op==="Продажа"),
+     hint:`Сначала в «Товаре» найди артикул товара «${gname(v.g2)}». Потом в «Движении» — фильтр по артикулу и Тип операции = Продажа. Магазины не трогай — нужны все.`},
+    {lvl:"три таблицы",q:`Сколько упаковок товара «${gname(v.g3)}» продано в магазинах ${gen(v.d3)} района?`,
+     a:sum(m=>m.a===v.g3&&inDist(v.d3).includes(m.s)&&m.op==="Продажа"),
+     hint:`Артикул — в «Товаре». Магазины района — в «Магазине» (их два). В «Движении» отметь в фильтре ID магазина <b>оба</b> магазина.`},
+    {lvl:"как в ЕГЭ",ege:1,q:`На сколько увеличилось количество упаковок товара «${gname(v.g4)}», имеющихся в наличии в магазинах ${gen(v.d4)} района, за период с 01.06 по 03.06?`,
+     a:sum(m=>m.a===v.g4&&inDist(v.d4).includes(m.s)&&m.op==="Поступление")-sum(m=>m.a===v.g4&&inDist(v.d4).includes(m.s)&&m.op==="Продажа"),
+     hint:`«Увеличилось» = поступило − продано. Поставь фильтры по артикулу и магазинам района. Запиши сумму при «Поступление», потом при «Продажа» — и вычти.`}
+  ];
+}
+
+/* ===== Состояние ===== */
+const blank=()=>({name:"",cls:"",v:0,ans:{}});
+let S=blank();
+function load(){try{const r=localStorage.getItem(CONFIG.storageKey);if(r)S=Object.assign(blank(),JSON.parse(r));}catch(e){}}
+function save(){try{localStorage.setItem(CONFIG.storageKey,JSON.stringify(S));}catch(e){}}
+
+function renderVars(){
+  $("#vars").innerHTML=VARS.map((x,i)=>`<button type="button" class="pill ${S.v===i+1?"sel":""}" data-v="${i+1}">Вариант ${i+1}</button>`).join("");
+  $$("#vars .pill").forEach(b=>b.onclick=()=>{const nv=+b.dataset.v;if(nv!==S.v){S.v=nv;S.ans={};save();}renderVars();renderTasks();upd();});
+  const c=$("#vchip");c.textContent=S.v?"Вариант "+S.v:"";c.classList.toggle("on",!!S.v);
+}
+function renderTasks(){
+  $("#novar").style.display=S.v?"none":"";
+  if(!S.v){$("#tasks").innerHTML="";return;}
+  const T=tasksFor(VARS[S.v-1]);
+  $("#tasks").innerHTML=T.map((t,i)=>{const a=S.ans[i]||{};return `<div class="qi ${a.checked?(a.ok?"ok":"no"):""}"><span class="lvl ${t.ege?"ege":""}">${i+1} · ${t.lvl}</span><div class="qq">${t.q}</div>
+    <div class="ar"><input type="text" inputmode="numeric" data-i="${i}" value="${esc(a.v||"")}" placeholder="Ответ — число"><button type="button" class="go" data-i="${i}">Проверить</button></div>
+    <div class="fb ${a.checked?(a.ok?"ok":"no"):""}">${a.checked?(a.ok?"✓ Верно!":"✗ Неверно — проверь фильтры"):""}${a.tries>1&&a.ok?` <span class="small">(с ${a.tries}-й попытки)</span>`:""}</div>
+    <button type="button" class="lnk" data-h="${i}">Подсказка</button><div class="hint" id="h${i}">${t.hint}</div></div>`;}).join("");
+  const check=i=>{const v=$(`#tasks input[data-i="${i}"]`).value;if(!has(v))return;const a=S.ans[i]||{tries:0};
+    if(a.ok&&norm(a.v)===norm(v))return;a.tries=(a.tries||0)+1;a.v=v;a.checked=true;a.ok=norm(v)===String(T[i].a);S.ans[i]=a;save();renderTasks();upd();};
+  $$("#tasks input").forEach(inp=>{inp.oninput=()=>{const i=+inp.dataset.i;const a=S.ans[i]||{tries:0};a.v=inp.value;a.checked=false;S.ans[i]=a;save();upd();};
+    inp.onkeydown=e=>{if(e.key==="Enter"){e.preventDefault();check(+inp.dataset.i);}};});
+  $$("#tasks .go").forEach(b=>b.onclick=()=>check(+b.dataset.i));
+  $$("#tasks [data-h]").forEach(b=>b.onclick=()=>{$("#h"+b.dataset.h).classList.toggle("on");const a=S.ans[+b.dataset.h]||{tries:0};a.hint=true;S.ans[+b.dataset.h]=a;save();upd();});
+}
+
+/* ===== Сообщение учителю ===== */
+function message(){
+  const L=[`📊 Практикум ЕГЭ-3 (базы данных)`,`${V(S.name,"Имя не указано")}, ${V(S.cls,"класс ?")} — вариант ${S.v||"?"}`,""];
+  let ok=0;
+  for(let i=0;i<4;i++){const a=S.ans[i]||{};if(a.ok)ok++;
+    L.push(`${i+1}) ${V(a.v)} ${a.checked?(a.ok?"✓":"✗"):(has(a.v)?"(не проверен)":"")}${a.tries>1?` · попыток: ${a.tries}`:""}${a.hint?" · с подсказкой":""}`.trim());}
+  L.push("",`Верно: ${ok} из 4`);
+  return L.join("\n");
+}
+function upd(){
+  const m=[];if(!has(S.name))m.push("фамилия и имя");if(!has(S.cls))m.push("класс");if(!S.v)m.push("вариант");
+  const done=[0,1,2,3].filter(i=>(S.ans[i]||{}).checked).length;if(S.v&&done<4)m.push(`задания проверены: ${done} из 4`);
+  const el=$("#status");el.className="status2 "+(m.length?"warn":"okk");
+  el.textContent=m.length?"Ещё не готово: "+m.join(", ")+".":"Всё готово — отправляй учителю!";
+  const txt=message(),enc=encodeURIComponent(txt);
+  $("#sTg").href=CONFIG.telegram?`https://t.me/${CONFIG.telegram}?text=${enc}`:`https://t.me/share/url?url=${enc}`;
+  $("#sWa").href=CONFIG.whatsapp?`https://wa.me/${CONFIG.whatsapp}?text=${enc}`:`https://wa.me/?text=${enc}`;
+  const off=!has(S.name)||!S.v;["sTg","sWa"].forEach(id=>$("#"+id).classList.toggle("off",off));
+  $("#sendHint").textContent=off?"Кнопки включатся, когда впишешь имя и выберешь вариант.":
+    (CONFIG.telegram||CONFIG.whatsapp?"Откроется чат с учителем и готовое сообщение — просто нажми «Отправить».":"Откроется мессенджер с готовым сообщением — выбери чат с учителем и нажми «Отправить».");
+  $("#preview").textContent=txt;
+}
+function toast(t){const el=$("#toast");el.textContent=t;el.classList.add("show");clearTimeout(toast._t);toast._t=setTimeout(()=>el.classList.remove("show"),2800);}
+$("#sCp").onclick=async()=>{const txt=message();
+  try{await navigator.clipboard.writeText(txt);toast("Скопировано! Вставь в личные сообщения учителю");}
+  catch(e){const ta=document.createElement("textarea");ta.value=txt;ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.focus();ta.select();
+    let ok=false;try{ok=document.execCommand("copy");}catch(e2){}ta.remove();
+    if(ok)toast("Скопировано! Вставь в личные сообщения учителю");else{$("#manualWrap").style.display="";$("#manual").value=txt;$("#manual").select();}}};
+$("#reset").onclick=()=>$("#confirm").classList.add("show");
+$("#noreset").onclick=()=>$("#confirm").classList.remove("show");
+$("#yesreset").onclick=()=>{try{localStorage.removeItem(CONFIG.storageKey);}catch(e){}S=blank();$("#confirm").classList.remove("show");init();scrollTo(0,0);};
+
+function init(){
+  $$("input[data-k]").forEach(el=>{el.value=S[el.dataset.k]??"";el.oninput=()=>{S[el.dataset.k]=el.value;save();upd();};});
+  renderVars();renderTasks();upd();
+}
+load();init();
+</script>
+</body>
+</html>
