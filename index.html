@@ -51,19 +51,15 @@ h1{font-family:"PT Serif",Georgia,serif;font-size:clamp(30px,6vw,48px);line-heig
 /* ===== СПИСОК ТЕМ =====
    Чтобы добавить тему — допиши объект в нужный раздел.
    status: "now" — текущая тема, "done" — пройдена, "soon" — скоро.
-   lesson / hw / practice — пути к HTML-файлам в этом же репозитории.
-   Пустая строка = кнопки нет.
-   Примеры путей:
-     "db-model.html"          — файл рядом с index.html
-     "topics/db-model.html"   — файл в подпапке
-     "db-model.html#dz"       — якорь внутри файла
-*/
+   lesson / hw / practice / ege — имена файлов в этой же папке репозитория
+   (пустая строка = кнопки нет). Домашка — это файл урока с #dz в конце. */
 const SECTIONS=[
   {title:"Базы данных",note:"глава 1",topics:[
     {title:"База данных — модель предметной области",desc:"Предметная область, запись, поле, ключ, связи таблиц, виды баз данных. Мини-версия задания 3 из ЕГЭ.",status:"now",
      lesson:"db-model.html",
      hw:"db-model.html#dz",
-     practice:"db-model-practice.html"},
+     practice:"db-model-practice.html",
+     ege:"db-ege3.html"},
     {title:"Системы управления базами данных (СУБД)",desc:"Кто ищет среди миллиона строк за долю секунды.",status:"soon"}
   ]}
 ];
@@ -72,9 +68,10 @@ const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&g
 let k=0;
 document.getElementById("root").innerHTML=SECTIONS.map(s=>`<h2 class="sec">${esc(s.title)}${s.note?`<small>${esc(s.note)}</small>`:""}</h2><div class="list">`+
   s.topics.map(t=>{k++;const soon=t.status==="soon";
-    const b=[t.lesson&&`<a class="btn l" href="${esc(t.lesson)}" target="_blank" rel="noopener">📽️ Урок</a>`,
-             t.hw&&`<a class="btn h" href="${esc(t.hw)}" target="_blank" rel="noopener">📝 Домашка</a>`,
-             t.practice&&`<a class="btn p" href="${esc(t.practice)}" target="_blank" rel="noopener">💻 Практика</a>`].filter(Boolean).join("");
+    const b=[t.lesson&&`<a class="btn l" href="${esc(t.lesson)}">📽️ Урок</a>`,
+             t.hw&&`<a class="btn h" href="${esc(t.hw)}">📝 Домашка</a>`,
+             t.practice&&`<a class="btn p" href="${esc(t.practice)}">💻 Практика</a>`,
+             t.ege&&`<a class="btn p" href="${esc(t.ege)}">🎯 Практикум ЕГЭ</a>`].filter(Boolean).join("");
     return `<div class="topic ${soon?"soon":""}"><div class="n">${k}</div><div><h3>${esc(t.title)}${t.status==="now"?'<span class="badge now">сейчас</span>':soon?'<span class="badge soon">скоро</span>':""}</h3>${t.desc?`<p>${esc(t.desc)}</p>`:""}${b?`<div class="btns">${b}</div>`:""}</div></div>`;}).join("")+"</div>").join("");
 </script>
 </body>
