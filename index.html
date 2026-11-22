@@ -55,12 +55,15 @@ h1{font-family:"PT Serif",Georgia,serif;font-size:clamp(30px,6vw,48px);line-heig
    (пустая строка = кнопки нет). Домашка — это файл урока с #dz в конце. */
 const SECTIONS=[
   {title:"Базы данных",note:"глава 1",topics:[
-    {title:"База данных — модель предметной области",desc:"Предметная область, запись, поле, ключ, связи таблиц, виды баз данных. Мини-версия задания 3 из ЕГЭ.",status:"now",
+    {title:"База данных — модель предметной области",desc:"Предметная область, запись, поле, ключ, связи таблиц, виды баз данных. Мини-версия задания 3 из ЕГЭ.",status:"done",
      lesson:"db-model.html",
      hw:"db-model.html#dz",
      practice:"db-model-practice.html",
      ege:"db-ege3.html"},
-    {title:"Системы управления базами данных (СУБД)",desc:"Кто ищет среди миллиона строк за долю секунды.",status:"soon"}
+    {title:"Системы управления базами данных (СУБД)",desc:"Что такое СУБД, что она умеет, типы полей, запросы и SQL. Задание 3 ЕГЭ — уровень 2: период, литры и килограммы, отдел, выручка.",status:"now",
+     lesson:"dbms.html",
+     hw:"dbms.html#dz",
+     ege:"db-ege3-2.html"}
   ]}
 ];
 
@@ -72,7 +75,7 @@ document.getElementById("root").innerHTML=SECTIONS.map(s=>`<h2 class="sec">${esc
              t.hw&&`<a class="btn h" href="${esc(t.hw)}">📝 Домашка</a>`,
              t.practice&&`<a class="btn p" href="${esc(t.practice)}">💻 Практика</a>`,
              t.ege&&`<a class="btn p" href="${esc(t.ege)}">🎯 Практикум ЕГЭ</a>`].filter(Boolean).join("");
-    return `<div class="topic ${soon?"soon":""}"><div class="n">${k}</div><div><h3>${esc(t.title)}${t.status==="now"?'<span class="badge now">сейчас</span>':soon?'<span class="badge soon">скоро</span>':""}</h3>${t.desc?`<p>${esc(t.desc)}</p>`:""}${b?`<div class="btns">${b}</div>`:""}</div></div>`;}).join("")+"</div>").join("");
+    return `<div class="topic ${soon?"soon":""}"><div class="n">${k}</div><div><h3>${esc(t.title)}${t.status==="now"?'<span class="badge now">сейчас</span>':soon?'<span class="badge soon">скоро</span>':t.status==="done"?'<span class="badge soon">пройдена</span>':""}</h3>${t.desc?`<p>${esc(t.desc)}</p>`:""}${b?`<div class="btns">${b}</div>`:""}</div></div>`;}).join("")+"</div>").join("");
 </script>
 </body>
 </html>
