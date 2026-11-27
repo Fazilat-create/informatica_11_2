@@ -452,7 +452,7 @@ table.cmp td:first-child{font-weight:800;color:#6b5a4a;width:210px}
       <h3>План урока</h3>
       <ul class="list">
         <li><span class="num">1</span>Что такое СУБД и какие они бывают</li>
-        <li><span class="num">2</span>Чем СУБД отличается от Excel</li>
+        <li><span class="num">2</span>Чем СУБД отличается от электронных таблиц</li>
         <li><span class="num">3</span>Что умеет СУБД. Типы полей</li>
         <li><span class="num">4</span>Запросы и язык SQL</li>
         <li><span class="num">5</span>Задание 3 ЕГЭ — уровень посложнее</li>
@@ -500,9 +500,9 @@ table.cmp td:first-child{font-weight:800;color:#6b5a4a;width:210px}
 <!-- NEW: Таблица или СУБД -->
 <section class="slide" data-stage="5"><div class="stagetag"><b>Этап 5</b> · Новое знание · 15 мин</div>
 <div class="inner">
-  <h2>Excel или СУБД — в чём разница?</h2>
+  <h2>Электронная таблица или СУБД?</h2>
   <table class="cmp">
-    <tr><th></th><th class="x">📊 Электронная таблица<br><span style="font-size:16px;font-weight:700">Excel, LibreOffice Calc</span></th><th class="d">⚙️ СУБД<br><span style="font-size:16px;font-weight:700">Access, PostgreSQL, SQLite…</span></th></tr>
+    <tr><th></th><th class="x">📊 Электронная таблица<br><span style="font-size:16px;font-weight:700">Excel, LibreOffice Calc, Р7-Офис</span></th><th class="d">⚙️ СУБД<br><span style="font-size:16px;font-weight:700">Access, PostgreSQL, SQLite…</span></th></tr>
     <tr><td>Для чего</td><td>расчёты, формулы, графики</td><td>хранить и искать много связанных данных</td></tr>
     <tr class="step"><td>Сколько данных</td><td>на листе — не больше 1 048 576 строк</td><td>миллионы и миллиарды записей</td></tr>
     <tr class="step"><td>Сколько людей сразу</td><td>один или несколько</td><td>тысячи одновременно</td></tr>
@@ -526,7 +526,7 @@ table.cmp td:first-child{font-weight:800;color:#6b5a4a;width:210px}
     <button class="tcard tb" type="button"><span class="s">🎂 Список гостей на день рождения</span><span class="t">электронная таблица</span></button>
     <button class="tcard db" type="button"><span class="s">📓 Электронный дневник всей школы</span><span class="t">СУБД</span></button>
   </div>
-  <div class="card blue step" style="margin-top:14px"><p style="font-size:21px">💡 Задание 3 ЕГЭ решают в <b>Excel</b> фильтрами — для пары тысяч строк этого хватает. А вот база маркетплейса в Excel <b>просто не поместится</b>.</p></div>
+  <div class="card blue step" style="margin-top:14px"><p style="font-size:21px">💡 На ЕГЭ задание 3 решают в электронной таблице — <b>LibreOffice Calc</b> (файл .ods): фильтрами и формулами. Для пары тысяч строк этого хватает. А база маркетплейса в таблицу <b>просто не поместится</b>.</p></div>
 </div>
 </section>
 
@@ -668,9 +668,9 @@ table.cmp td:first-child{font-weight:800;color:#6b5a4a;width:210px}
     </div>
     <div class="col">
       <div class="card blue step" style="padding:14px 16px">
-        <h3 style="color:#2f5f9e">🎯 Задание 3 ЕГЭ — одной строкой</h3>
+        <h3 style="color:#2f5f9e">🎯 Задание 3 ЕГЭ на языке SQL</h3>
         <div class="sqlbox">SELECT SUM(Количество)<br>FROM Движение<br>WHERE Артикул = 5<br>&nbsp; AND Магазин IN ('М1','М2')<br>&nbsp; AND Тип = 'Продажа';</div>
-        <p style="font-size:18px;margin-top:6px"><b>SUM</b> — сложить, <b>IN</b> — «одно из списка». Всё, что мы делаем фильтрами, СУБД делает одной командой.</p>
+        <p style="font-size:17px;margin-top:6px"><b>SUM</b> — сложить, <b>IN</b> — «одно из списка». В настоящей СУБД это одна команда.</p><p style="font-size:17px;margin-top:4px">⚠️ Но на экзамене дают <b>электронную таблицу</b> (LibreOffice Calc), и решаем мы <b>фильтрами</b>, как на уроке. SQL там можно применить только через Python.</p>
       </div>
       <div class="card step" style="margin-top:12px;padding:12px 16px">
         <p style="font-size:19px"><b>Переведи на русский:</b></p>
@@ -731,7 +731,7 @@ table.cmp td:first-child{font-weight:800;color:#6b5a4a;width:210px}
     <div class="card" style="padding:12px 20px"><p style="font-size:22px">3. Запрос «Цена &lt; 100 <b>И</b> Отдел = Молочный» найдёт молочные товары дешевле 100 ₽. <span class="ans"><span>Верно</span></span></p></div>
     <div class="card" style="padding:12px 20px"><p style="font-size:22px">4. При сортировке по убыванию первым будет самое большое значение. <span class="ans"><span>Верно</span></span></p></div>
     <div class="card" style="padding:12px 20px"><p style="font-size:22px">5. «С 03.06 по 05.06» — это два дня. <span class="ans"><span>Неверно: три дня — 03, 04 и 05</span></span></p></div>
-    <div class="card" style="padding:12px 20px"><p style="font-size:22px">6. Базу интернет-магазина удобнее всего вести в Excel. <span class="ans"><span>Неверно: нужна СУБД</span></span></p></div>
+    <div class="card" style="padding:12px 20px"><p style="font-size:22px">6. Базу интернет-магазина удобнее всего вести в электронной таблице. <span class="ans"><span>Неверно: нужна СУБД</span></span></p></div>
   </div>
 </div>
 </section>
@@ -759,13 +759,13 @@ table.cmp td:first-child{font-weight:800;color:#6b5a4a;width:210px}
     <div class="col">
       <div class="card" style="margin-bottom:10px"><p>⚙️ СУБД — это…</p></div>
       <div class="card" style="margin-bottom:10px"><p>📋 Телефон хранят в … поле, потому что…</p></div>
-      <div class="card" style="margin-bottom:10px"><p>📊 Excel отличается от СУБД тем, что…</p></div>
+      <div class="card" style="margin-bottom:10px"><p>📊 Электронная таблица отличается от СУБД тем, что…</p></div>
       <div class="card"><p>🤔 Самым трудным сегодня было…</p></div>
     </div>
     <div class="card soft" style="width:440px;flex:none">
       <h3>Запомнили?</h3>
       <p style="font-size:21px">✔ СУБД — программа, база — данные</p>
-      <p style="font-size:21px;margin-top:6px">✔ Excel — расчёты, СУБД — много связанных данных</p>
+      <p style="font-size:21px;margin-top:6px">✔ Таблица — расчёты, СУБД — много связанных данных</p>
       <p style="font-size:21px;margin-top:6px">✔ Типы: текст, число, дата, логический</p>
       <p style="font-size:21px;margin-top:6px">✔ SQL: SELECT, INSERT, UPDATE, DELETE</p>
       <p style="font-size:21px;margin-top:6px">✔ И — оба условия, ИЛИ — любое</p>
