@@ -103,6 +103,39 @@ input[type=text]:focus{border-color:#f58a27;box-shadow:0 0 0 4px #fce3c6}
 .hint.on{display:block}
 .novar{color:#C9482A;font-weight:800;margin-top:10px}
 
+/* бонус: лист Calc */
+.calc{margin-top:12px;border:1.5px solid #c9cfd6;border-radius:12px;overflow:hidden;background:#fff;font-size:14px}
+.calc .fbar{display:flex;align-items:center;gap:0;border-bottom:1.5px solid #c9cfd6;background:#f3f5f7}
+.calc .addr{width:64px;text-align:center;font-weight:800;color:#2b3640;border-right:1.5px solid #c9cfd6;padding:8px 4px;font-family:ui-monospace,Consolas,monospace}
+.calc .fx{padding:0 8px;font-style:italic;font-weight:800;color:#6b7680;font-family:Georgia,serif}
+.calc .fin{flex:1;border:none;background:#fff;padding:8px 10px;font-family:ui-monospace,Consolas,monospace;font-size:15px;outline:none;min-width:0}
+.calc .fin:read-only{background:#f9fafb;color:#6b7680}
+.calc .fok{border:none;background:#1d6f42;color:#fff;font-weight:800;padding:8px 14px}
+.calc .ferr{background:#fde0db;color:#8a2a1a;font-weight:700;padding:6px 10px;display:none;font-size:13px}
+.calc .ferr.on{display:block}
+.calc .grid{overflow:auto;max-height:430px}
+.calc table{border-collapse:collapse;width:100%}
+.calc th{background:#eef1f4;color:#4a5560;font-weight:700;border:1px solid #d9dee3;padding:3px 6px;text-align:center;position:sticky;top:0;z-index:1;font-size:13px}
+.calc th.rn{position:sticky;left:0;z-index:2;width:34px}
+.calc td{border:1px solid #e3e7eb;padding:3px 6px;white-space:nowrap;cursor:cell;min-width:36px}
+.calc td.rn{background:#eef1f4;color:#4a5560;text-align:center;font-weight:700;position:sticky;left:0;cursor:default;font-size:13px}
+.calc td.hd{font-weight:800;background:#fafbfc}
+.calc td.n{text-align:right}
+.calc td.ans{background:#fff7e0}
+.calc td.ans.ok{background:#e3f2e8;color:#1d6f42;font-weight:800}
+.calc td.ans.err{color:#b23c2c;font-weight:800}
+.calc td.sel{outline:2.5px solid #1d6f42;outline-offset:-2px}
+.calc td.rng{background:#e8f0fe!important}
+.fn{display:grid;gap:6px;margin-top:10px}
+.fn div{background:#fff;border-radius:10px;padding:6px 10px;font-size:15px}
+.fn code{font-family:ui-monospace,Consolas,monospace;color:#1d6f42;font-weight:800}
+.bt{border:2px solid #ECE4DA;border-radius:14px;padding:10px 12px;margin-top:8px;display:flex;gap:10px;align-items:flex-start;cursor:pointer;background:#fff}
+.bt.ok{border-color:#7cc36a;background:#F4FCF9}
+.bt .cell{flex:none;font-family:ui-monospace,Consolas,monospace;font-weight:800;background:#fff7e0;border-radius:8px;padding:2px 8px}
+.bt.ok .cell{background:#e3f2e8;color:#1d6f42}
+.bt .st{margin-left:auto;font-weight:800;white-space:nowrap}
+.bt>div{min-width:0;flex:1}
+.bt code{word-break:break-all}
 /* отправка */
 .status2{font-weight:700;font-size:15px}
 .status2.okk{color:#1F9E85}.status2.warn{color:#C9482A}
@@ -182,6 +215,29 @@ textarea{width:100%;border:2px solid #ECE4DA;border-radius:12px;padding:10px;fon
     <h2><span class="bn">✍️</span>Задания</h2>
     <p class="novar" id="novar">Сначала выбери вариант — вверху страницы.</p>
     <div id="tasks"></div>
+  </div>
+
+  <div class="card" id="bonus">
+    <h2><span class="bn">⭐</span>Бонус: функции электронной таблицы</h2>
+    <p style="margin-top:8px">Решил всё? В LibreOffice Calc задание 3 можно решить и <b>без фильтров</b> — формулами. Попробуй на маленьком листе: магазин М1, товары с артикулами 1, 2 и 5.</p>
+    <div class="tip" style="margin-top:8px;display:grid;gap:6px">
+      <div>👉 Нажми на жёлтую ячейку в столбце <b>G</b> и напиши формулу в строке сверху. Формула начинается со знака <b>=</b>. В столбце D — количество упаковок.</div>
+      <div>👉 Части формулы разделяются <b>точкой с запятой</b>, текст пишется в <b>кавычках</b>: <code>"Продажа"</code>.</div>
+    </div>
+    <details class="pv" style="background:#FFF4D1"><summary>📒 Шпаргалка по функциям</summary>
+      <div class="fn" style="padding-bottom:12px">
+        <div><code>=СУММ(D2:D15)</code> — сложить все числа в диапазоне</div>
+        <div><code>=СЧЁТЕСЛИ(C2:C15;"Продажа")</code> — сколько ячеек подходят под условие</div>
+        <div><code>=СУММЕСЛИ(C2:C15;"Продажа";D2:D15)</code> — сложить числа там, где выполнено условие<br><span class="small">(где проверять; условие; что складывать)</span></div>
+        <div><code>=СУММЕСЛИМН(D2:D15;B2:B15;5;C2:C15;"Продажа")</code> — сложить по нескольким условиям<br><span class="small">(что складывать; где 1; условие 1; где 2; условие 2…)</span></div>
+        <div>Можно считать и между формулами: <code>=СУММ(D2:D3)-D4</code></div>
+      </div></details>
+    <div class="calc" id="calc">
+      <div class="fbar"><span class="addr" id="cAddr">G2</span><span class="fx">fx</span><input class="fin" id="cIn" type="text" spellcheck="false" autocomplete="off" autocapitalize="off" placeholder="=СУММ(D2:D15)"><button class="fok" id="cOk" type="button">✓</button></div>
+      <div class="ferr" id="cErr"></div>
+      <div class="grid" id="cGrid"></div>
+    </div>
+    <div id="btasks"></div>
   </div>
 
   <div class="card soft">
@@ -309,8 +365,116 @@ function tasksFor(v){
   ];
 }
 
+/* ===== БОНУС: мини-лист Calc ===== */
+const SHEET_HEAD=["Дата","Артикул","Тип операции","Кол-во упак.","Цена"];
+const SHEET=MOVES.filter(m=>m.s==="М1"&&[1,2,5].includes(m.a)).map(m=>[m.dt,m.a,m.op,m.q,m.p]);
+const NR=SHEET.length+1; /* последняя строка с данными */
+const COLS="ABCDEFG";
+function cellRaw(c,r){ /* значение ячейки данных */
+  const ci=COLS.indexOf(c);if(r===1)return ci<5?SHEET_HEAD[ci]:(c==="G"?"Ответ":"");
+  if(ci<5&&r>=2&&r<=NR)return SHEET[r-2][ci];
+  if(c==="G"){const t=BT.findIndex(x=>x.cell===c+r);if(t>=0){const v=(B.f[t]||{}).val;return v===undefined?"":v;}}
+  return "";
+}
+/* разбор формулы */
+function evalFormula(src){
+  let s=String(src).trim();if(!s.startsWith("="))throw "Формула должна начинаться со знака =";
+  s=s.slice(1);let i=0;const used=[];
+  const ws=()=>{while(i<s.length&&/\s/.test(s[i]))i++;};
+  const peek=()=>{ws();return s[i];};
+  function expr(){let v=term();for(;;){const c=peek();if(c==="+"){i++;v=num(v)+num(term());}else if(c==="-"){i++;v=num(v)-num(term());}else return v;}}
+  function term(){let v=fac();for(;;){const c=peek();if(c==="*"){i++;v=num(v)*num(fac());}else if(c==="/"){i++;const d=num(fac());if(d===0)throw "Деление на ноль";v=num(v)/d;}else return v;}}
+  function num(v){if(Array.isArray(v))throw "Диапазон нельзя складывать знаком + — используй СУММ";if(v===""||v===undefined)return 0;const n=+String(v).replace(",",".");if(isNaN(n))throw "Здесь нужно число, а получился текст";return n;}
+  function ref(){ws();const m=/^([A-Za-z])\s*([0-9]+)/.exec(s.slice(i));if(!m)return null;i+=m[0].length;return {c:m[1].toUpperCase(),r:+m[2]};}
+  function fac(){
+    const c=peek();
+    if(c==="-"){i++;return -num(fac());}
+    if(c==="("){i++;const v=expr();if(peek()!==")")throw "Не хватает закрывающей скобки )";i++;return v;}
+    if(c==='"'){i++;let t="";while(i<s.length&&s[i]!=='"')t+=s[i++];if(s[i]!=='"')throw "Не закрыта кавычка \"";i++;return t;}
+    const mn=/^[0-9]+([.,][0-9]+)?/.exec(s.slice(i));if(mn){i+=mn[0].length;return +mn[0].replace(",",".");}
+    const mf=/^([A-Za-zА-Яа-яЁё]{2,})\s*\(/.exec(s.slice(i));
+    if(mf){i+=mf[0].length;const name=mf[1].toUpperCase().replace(/Ё/g,"Е");const args=[];
+      if(peek()!==")"){for(;;){args.push(expr());const d=peek();if(d===";"||d===","){i++;continue;}break;}}
+      if(peek()!==")")throw "Не хватает закрывающей скобки ) или точки с запятой между частями";i++;return call(name,args);}
+    const a=ref();
+    if(a){if(peek()===":"){i++;const b=ref();if(!b)throw "После двоеточия нужен адрес ячейки, например D15";const out=[];
+        for(let r=Math.min(a.r,b.r);r<=Math.max(a.r,b.r);r++){const row=[];for(let k=Math.min(COLS.indexOf(a.c),COLS.indexOf(b.c));k<=Math.max(COLS.indexOf(a.c),COLS.indexOf(b.c));k++){row.push(cellRaw(COLS[k],r));used.push(COLS[k]+r);}out.push(row);}
+        return out;}
+      used.push(a.c+a.r);return cellRaw(a.c,a.r);}
+    throw "Не понимаю запись рядом с «"+s.slice(i,i+8)+"»";
+  }
+  const flat=v=>Array.isArray(v)?v.flat():[v];
+  function crit(cv){const t=String(cv).trim();const m=/^(<=|>=|<>|=|<|>)(.*)$/.exec(t);
+    if(m){const op=m[1],x=m[2].trim(),xn=+x.replace(",",".");return v=>{const a=(typeof v==="number"||!isNaN(+v))&&x!==""&&!isNaN(xn)?[+v,xn]:[String(v).toLowerCase(),x.toLowerCase()];
+      return {"<=":a[0]<=a[1],">=":a[0]>=a[1],"<>":a[0]!=a[1],"=":a[0]==a[1],"<":a[0]<a[1],">":a[0]>a[1]}[op];};}
+    if(typeof cv==="number")return v=>+v===cv;
+    return v=>String(v).toLowerCase()===t.toLowerCase();}
+  function call(n,a){
+    const AL={SUM:"СУММ",COUNTIF:"СЧЕТЕСЛИ",SUMIF:"СУММЕСЛИ",SUMIFS:"СУММЕСЛИМН",COUNTIFS:"СЧЕТЕСЛИМН",MAX:"МАКС",MIN:"МИН",AVERAGE:"СРЗНАЧ",COUNT:"СЧЕТ"};n=AL[n]||n;
+    const nums=v=>flat(v).filter(x=>x!==""&&!isNaN(+x)).map(Number);
+    if(n==="СУММ")return a.reduce((s,v)=>s+nums(v).reduce((x,y)=>x+y,0),0);
+    if(n==="МАКС")return Math.max(...a.flatMap(nums));
+    if(n==="МИН")return Math.min(...a.flatMap(nums));
+    if(n==="СЧЕТ")return a.flatMap(nums).length;
+    if(n==="СРЗНАЧ"){const x=a.flatMap(nums);return x.reduce((p,q)=>p+q,0)/x.length;}
+    if(n==="СЧЕТЕСЛИ"){if(a.length!==2)throw "У СЧЁТЕСЛИ две части: (диапазон; условие)";const f=crit(a[1]);return flat(a[0]).filter(f).length;}
+    if(n==="СУММЕСЛИ"){if(a.length<2||a.length>3)throw "У СУММЕСЛИ три части: (где проверять; условие; что складывать)";const f=crit(a[1]),R=flat(a[0]),S=a[2]!==undefined?flat(a[2]):R;
+      if(S.length!==R.length)throw "Диапазоны должны быть одинаковой длины";return R.reduce((s,v,k)=>s+(f(v)?(+S[k]||0):0),0);}
+    if(n==="СУММЕСЛИМН"||n==="СЧЕТЕСЛИМН"){const sumR=n==="СУММЕСЛИМН"?flat(a[0]):null;const pairs=n==="СУММЕСЛИМН"?a.slice(1):a;
+      if(pairs.length<2||pairs.length%2)throw n==="СУММЕСЛИМН"?"Порядок: (что складывать; где 1; условие 1; где 2; условие 2…)":"Порядок: (где 1; условие 1; где 2; условие 2…)";
+      const P=[];for(let k=0;k<pairs.length;k+=2)P.push([flat(pairs[k]),crit(pairs[k+1])]);const L=P[0][0].length;
+      if(P.some(x=>x[0].length!==L)||(sumR&&sumR.length!==L))throw "Все диапазоны должны быть одинаковой длины (например, все со 2-й по "+NR+"-ю строку)";
+      let res=0;for(let k=0;k<L;k++)if(P.every(([R,f])=>f(R[k])))res+=sumR?(+sumR[k]||0):1;return res;}
+    throw "Не знаю функцию "+n+". Проверь, как она пишется";
+  }
+  const v=expr();ws();if(i<s.length)throw "Лишние символы в конце: «"+s.slice(i)+"»";
+  if(Array.isArray(v))throw "Получился диапазон, а нужно одно число — оберни его в функцию, например СУММ";
+  return {v,used};
+}
+const rngD=`2:D${NR}`;
+const BT=[
+  {cell:"G2",q:"Сколько упаковок во всех операциях вместе?",need:"СУММ",hint:`=СУММ(D${rngD.slice(2)})`.replace("D"+NR,"D"+NR)},
+  {cell:"G3",q:"Сколько было операций «Продажа»?",need:"СЧЁТЕСЛИ",hint:`Используй СЧЁТЕСЛИ: где проверять — столбец C, условие — "Продажа".`},
+  {cell:"G4",q:"Сколько упаковок поступило (тип «Поступление»)?",need:"СУММЕСЛИ",hint:`СУММЕСЛИ(где проверять; условие; что складывать): проверяем C, складываем D.`},
+  {cell:"G5",q:"Сколько упаковок гречки (артикул 5) продано?",need:"СУММЕСЛИМН",hint:`Два условия: артикул = 5 (столбец B) и тип = "Продажа" (столбец C). Складываем D. Сначала пишется то, что складываем.`},
+  {cell:"G6",q:"⭐ На сколько упаковок больше поступило, чем продано?",need:"",hint:`Две формулы СУММЕСЛИ и минус между ними: =СУММЕСЛИ(…"Поступление"…)-СУММЕСЛИ(…"Продажа"…)`}
+];
+BT[0].hint=`Сложи весь столбец D со 2-й по ${NR}-ю строку: =СУММ(D2:D${NR})`;
+const col=(c)=>SHEET.map(r=>r["ABCDE".indexOf(c)]);
+const BEXP=[col("D").reduce((a,b)=>a+b,0),
+  SHEET.filter(r=>r[2]==="Продажа").length,
+  SHEET.filter(r=>r[2]==="Поступление").reduce((a,r)=>a+r[3],0),
+  SHEET.filter(r=>r[1]===5&&r[2]==="Продажа").reduce((a,r)=>a+r[3],0),
+  SHEET.filter(r=>r[2]==="Поступление").reduce((a,r)=>a+r[3],0)-SHEET.filter(r=>r[2]==="Продажа").reduce((a,r)=>a+r[3],0)];
+let B={f:{}};let selCell="G2";
+function bonusRecalc(){BT.forEach((t,k)=>{const f=(B.f[k]||{}).src;if(!f){B.f[k]={};return;}try{const r=evalFormula(f);B.f[k]={src:f,val:Math.round(r.v*100)/100,ok:Math.abs(r.v-BEXP[k])<0.001};}catch(e){B.f[k]={src:f,val:"#ОШИБКА",ok:false,err:String(e)};}});}
+function drawSheet(hl){
+  let h='<table><thead><tr><th class="rn"></th>'+[...COLS].map(c=>`<th>${c}</th>`).join("")+"</tr></thead><tbody>";
+  for(let r=1;r<=NR;r++){h+=`<tr><td class="rn">${r}</td>`;for(const c of COLS){const id=c+r,t=BT.findIndex(x=>x.cell===id);const v=cellRaw(c,r);
+    const cls=[r===1&&c!=="F"?"hd":"",typeof v==="number"?"n":"",t>=0?"ans":"",t>=0&&(B.f[t]||{}).ok?"ok":"",t>=0&&(B.f[t]||{}).err?"err":"",id===selCell?"sel":"",hl&&hl.includes(id)?"rng":""].join(" ");
+    h+=`<td class="${cls}" data-c="${id}">${esc(v)}</td>`;}h+="</tr>";}
+  $("#cGrid").innerHTML=h+"</tbody></table>";
+  $$("#cGrid td[data-c]").forEach(td=>td.onclick=()=>selectCell(td.dataset.c));
+}
+function selectCell(id){selCell=id;const t=BT.findIndex(x=>x.cell===id);$("#cAddr").textContent=id;const inp=$("#cIn");
+  if(t>=0){inp.readOnly=false;inp.value=(B.f[t]||{}).src||"";inp.placeholder="=…";const e=(B.f[t]||{}).err;$("#cErr").textContent=e?"⚠️ "+e:"";$("#cErr").classList.toggle("on",!!e);if(matchMedia("(pointer:fine)").matches)setTimeout(()=>inp.focus(),30);}
+  else{inp.readOnly=true;const c=id[0],r=+id.slice(1);inp.value=cellRaw(c,r);inp.placeholder="";$("#cErr").classList.remove("on");}
+  let hl=null;if(t>=0&&(B.f[t]||{}).src){try{hl=evalFormula(B.f[t].src).used;}catch(e){}}
+  drawSheet(hl);}
+function commit(){const t=BT.findIndex(x=>x.cell===selCell);if(t<0)return;const v=$("#cIn").value.trim();
+  B.f[t]={src:v};if(!v)B.f[t]={};bonusRecalc();S.bonus=B.f;save();selectCell(selCell);drawBT();upd();}
+function drawBT(){
+  $("#btasks").innerHTML=BT.map((t,k)=>{const f=B.f[k]||{};return `<div class="bt ${f.ok?"ok":""}" data-k="${k}"><span class="cell">${t.cell}</span><div><b>${t.q}</b>
+    <div class="small" style="margin-top:2px">${f.src?`Формула: <code>${esc(f.src)}</code> → <b>${esc(f.val)}</b>`:"Нажми, чтобы выбрать ячейку"}</div>
+    <button type="button" class="lnk" data-bh="${k}">Подсказка</button><div class="hint" id="bh${k}">${t.hint}</div></div>
+    <span class="st">${f.ok?"✓":f.src?"✗":""}</span></div>`;}).join("");
+  $$("#btasks .bt").forEach(el=>el.onclick=e=>{if(e.target.closest("[data-bh]")){$("#bh"+e.target.closest("[data-bh]").dataset.bh).classList.toggle("on");return;}selectCell(BT[+el.dataset.k].cell);$("#calc").scrollIntoView({behavior:"smooth",block:"start"});});
+}
+$("#cOk").onclick=commit;
+$("#cIn").onkeydown=e=>{if(e.key==="Enter"){e.preventDefault();commit();}};
+
 /* ===== Состояние ===== */
-const blank=()=>({name:"",cls:"",v:0,ans:{}});
+const blank=()=>({name:"",cls:"",v:0,ans:{},bonus:{}});
 let S=blank();
 function load(){try{const r=localStorage.getItem(CONFIG.storageKey);if(r)S=Object.assign(blank(),JSON.parse(r));}catch(e){}}
 function save(){try{localStorage.setItem(CONFIG.storageKey,JSON.stringify(S));}catch(e){}}
@@ -343,6 +507,9 @@ function message(){
   for(let i=0;i<5;i++){const a=S.ans[i]||{};if(a.ok)ok++;
     L.push(`${i+1}) ${V(a.v)} ${a.checked?(a.ok?"✓":"✗"):(has(a.v)?"(не проверен)":"")}${a.tries>1?` · попыток: ${a.tries}`:""}${a.hint?" · с подсказкой":""}`.trim());}
   L.push("",`Верно: ${ok} из 5`);
+  const bf=BT.map((t,k)=>B.f[k]||{});
+  if(bf.some(f=>f.src)){L.push("",`⭐ Бонус (формулы): верно ${bf.filter(f=>f.ok).length} из ${BT.length}`);
+    bf.forEach((f,k)=>{if(f.src)L.push(`${BT[k].cell}: ${f.src} → ${f.val} ${f.ok?"✓":"✗"}`);});}
   return L.join("\n");
 }
 function upd(){
@@ -369,6 +536,7 @@ $("#noreset").onclick=()=>$("#confirm").classList.remove("show");
 $("#yesreset").onclick=()=>{try{localStorage.removeItem(CONFIG.storageKey);}catch(e){}S=blank();$("#confirm").classList.remove("show");init();scrollTo(0,0);};
 
 function init(){
+  B={f:S.bonus||{}};bonusRecalc();drawBT();selectCell("G2");
   $$("input[data-k]").forEach(el=>{el.value=S[el.dataset.k]??"";el.oninput=()=>{S[el.dataset.k]=el.value;save();upd();};});
   renderVars();renderTasks();upd();
 }
